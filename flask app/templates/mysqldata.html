@@ -1,0 +1,76 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<section>
+    <h2 class="text-xl mb-2"> MySql Database Sample With Values Manually Entered </h2>
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">score</th>
+                <th class="px-4 py-2">facility_id</th>
+                <th class="px-4 py-2">measure_id</th>
+                <th class="px-4 py-2">compared_to_national</th>
+                <th class="px-4 py-2">denominator</th>
+                <th class="px-4 py-2">start_date</th>
+                <th class="px-4 py-2">end_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="border px-4 py-2">3.6</td>
+                <td class="border px-4 py-2">330005</td>
+                <td class="border px-4 py-2">COMP_HIP_KNEE</td>
+                <td class="border px-4 py-2">No Different Than the National Rate</td>
+                <td class="border px-4 py-2">203</td>
+                <td class="border px-4 py-2">2019-04-10</td>
+                <td class="border px-4 py-2">2022-03-31</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">9</td>
+                <td class="border px-4 py-2">330009</td>
+                <td class="border px-4 py-2">MORT_30_COPD</td>
+                <td class="border px-4 py-2">No Different Than the National Rate</td>
+                <td class="border px-4 py-2">37</td>
+                <td class="border px-4 py-2">2019-07-01</td>
+                <td class="border px-4 py-2">2022-06-30</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="text-xl mb-2"> Another Look at a MySQL Table with Values Imported </h2>
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">score</th>
+                <th class="px-4 py-2">facility_id</th>
+                <th class="px-4 py-2">measure_id</th>
+                <th class="px-4 py-2">compared_to_national</th>
+                <th class="px-4 py-2">denominator</th>
+                <th class="px-4 py-2">start_date</th>
+                <th class="px-4 py-2">end_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sqldata in sqldata.values %}
+            <tr>
+                <td class="border px-4 py-2">{{ sqldata[0] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[1] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[2] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[3] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[4] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[5] }}</td>
+                <td class="border px-4 py-2">{{ sqldata[6] }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+{% endblock %}

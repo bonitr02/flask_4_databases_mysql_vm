@@ -1,30 +1,11 @@
+#pip install python-dotenv
+#pip install mysql
+#pip install mysql-connector-python
+#pip install pymysql
 import os
 from dotenv import load_dotenv
 from pandas import read_sql
 from sqlalchemy import create_engine, inspect
-
-"""
-
-This script uses the pymysql library for connecting to MySQL, 
-so you might need to install that (pip install pymysql) if you haven't already.
-
-It also uses python-dotenv for bringing in secrets from your .env file 
-
-The .env should have the following in it:
-
-DB_HOST=your_host
-DB_DATABASE=your_database_name
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-DB_PORT=3306
-DB_CHARSET=utf8mb4
-
-The default port is set to 3306 for MySQL, but you can override it by 
-modifying the DB_PORT in your .env file.
-
-The connection string is MySQL-specific, incorporating the specified port and charset.
-
-"""
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -51,15 +32,18 @@ def get_tables(engine):
     inspector = inspect(engine)
     return inspector.get_table_names()
 
+
 def execute_query_to_dataframe(query: str, engine):
     """Execute SQL query and return result as a DataFrame."""
     return read_sql(query, engine)
 
 
 # Example usage
-tables = get_tables(db_engine)
-print("Tables in the database:", tables)
+#tables = get_tables(db_engine)
+#print("Tables in the database:", tables)
 
-sql_query = "SELECT * FROM your_table_name"  # Modify as per your table
+sql_query = "SELECT * FROM measures"  # Modify as per your table
 df = execute_query_to_dataframe(sql_query, db_engine)
 print(df)
+
+#df.to_html('/home/rianne_bonitto/flask_4_databases_mysql_vm/flask app/templates/mysqldata4.html')
