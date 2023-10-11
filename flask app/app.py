@@ -1,15 +1,16 @@
-from flask import Flask, render_template
-import pandas as pd
-from sqlite3 import connect
-
 #pip install python-dotenv
 #pip install mysql
 #pip install mysql-connector-python
 #pip install pymysql
+from flask import Flask, render_template
+import pandas as pd
+from sqlite3 import connect
 import os
 from dotenv import load_dotenv
 from pandas import read_sql
 from sqlalchemy import create_engine, inspect
+
+# Connect to MySQL Database
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -49,8 +50,7 @@ def execute_query_to_dataframe(query: str, engine):
 sql_query = "SELECT * FROM measures"  # Modify as per your table
 df2 = execute_query_to_dataframe(sql_query, db_engine)
 print(df2)
-
-#df.to_html('/home/rianne_bonitto/flask_4_databases_mysql_vm/flask app/templates/mysqldata4.html')
+# Flask App 
 
 app = Flask(__name__)
 
@@ -69,6 +69,7 @@ def data(data=df):
     data = data.sample(15)
     return render_template('data.html', data=data)
 
+sqldatabase = df.to_html('/home/rianne_bonitto/flask_4_databases_mysql_vm/flask app/templates/mysqldata.html')
 
 @app.route('/mysqldata')
 def mysqldata(sqldata=df2):
